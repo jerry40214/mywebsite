@@ -6,7 +6,8 @@
     $userApi = new UserApi();
     switch($_SERVER["REQUEST_METHOD"]){
         case "POST":
-            $result = $userApi->insertUser($_POST["username"],$_POST["password"],$_POST["email"]);
+            $input = json_decode(file_get_contents("php://input"),true);
+            $result = $userApi->insertUser($input["username"],$input["password"],$input["email"]);
             echo $result;
             break;
     }
